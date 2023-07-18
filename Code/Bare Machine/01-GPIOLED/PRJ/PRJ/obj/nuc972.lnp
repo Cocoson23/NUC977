@@ -1,0 +1,13 @@
+--cpu ARM926EJ-S
+".\obj\main.o"
+".\obj\standalone.o"
+".\obj\sys.o"
+".\obj\system_nuc970.o"
+".\obj\startup_nuc970.o"
+".\obj\sys_nuc970.o"
+".\obj\sys_uart.o"
+".\obj\sys_timer.o"
+--strict --scatter "..\..\Script\nuc970.sct"
+--entry 0 --summary_stderr --info summarysizes --map --load_addr_map_info --symbols
+--info sizes --info totals
+--list ".\lst\nuc972.map" -o .\obj\nuc972.axf

@@ -1,0 +1,27 @@
+Dependencies for Project 'nuc972', Target 'muc972': (DO NOT MODIFY !)
+F (.\main.c)(0x64B698C6)(-c --cpu ARM926EJ-S -D__EVAL -g -O2 --apcs=interwork --split_sections -I ..\..\Driver\Include-I"D:\Tools\Work Tools\Keil_v5\ARM\RV31\INC"-I"D:\Tools\Work Tools\Keil_v5\ARM\CMSIS\Include"-I"D:\Tools\Work Tools\Keil_v5\ARM\INC\Toshiba"-D__UVISION_VERSION="524"-o .\obj\main.o --list_dir ".\\lst\\" --list --omf_browse .\obj\main.crf --depend .\obj\main.d)
+I (..\..\Driver\Include\nuc970.h)(0x59A42D8A)
+I (D:\Tools\Work Tools\Keil_v5\ARM\ARMCC\include\stdint.h)(0x588B8344)
+I (..\..\Driver\Include\sys.h)(0x557A572A)
+I (..\..\Driver\Include\gpio.h)(0x59A42F24)
+F (..\..\Driver\Source\standalone.c)(0x557A572A)(-c --cpu ARM926EJ-S -D__EVAL -g -O2 --apcs=interwork --split_sections -I ..\..\Driver\Include-I"D:\Tools\Work Tools\Keil_v5\ARM\RV31\INC"-I"D:\Tools\Work Tools\Keil_v5\ARM\CMSIS\Include"-I"D:\Tools\Work Tools\Keil_v5\ARM\INC\Toshiba"-D__UVISION_VERSION="524"-o .\obj\standalone.o --list_dir ".\\lst\\" --list --omf_browse .\obj\standalone.crf --depend .\obj\standalone.d)
+F (..\..\Driver\Source\sys.c)(0x557A572A)(-c --cpu ARM926EJ-S -D__EVAL -g -O2 --apcs=interwork --split_sections -I ..\..\Driver\Include-I"D:\Tools\Work Tools\Keil_v5\ARM\RV31\INC"-I"D:\Tools\Work Tools\Keil_v5\ARM\CMSIS\Include"-I"D:\Tools\Work Tools\Keil_v5\ARM\INC\Toshiba"-D__UVISION_VERSION="524"-o .\obj\sys.o --list_dir ".\\lst\\" --list --omf_browse .\obj\sys.crf --depend .\obj\sys.d)
+I (..\..\Driver\Include\nuc970.h)(0x59A42D8A)
+I (D:\Tools\Work Tools\Keil_v5\ARM\ARMCC\include\stdint.h)(0x588B8344)
+I (..\..\Driver\Include\sys.h)(0x557A572A)
+F (..\..\Driver\Source\system_nuc970.c)(0x557A572A)(-c --cpu ARM926EJ-S -D__EVAL -g -O2 --apcs=interwork --split_sections -I ..\..\Driver\Include-I"D:\Tools\Work Tools\Keil_v5\ARM\RV31\INC"-I"D:\Tools\Work Tools\Keil_v5\ARM\CMSIS\Include"-I"D:\Tools\Work Tools\Keil_v5\ARM\INC\Toshiba"-D__UVISION_VERSION="524"-o .\obj\system_nuc970.o --list_dir ".\\lst\\" --list --omf_browse .\obj\system_nuc970.crf --depend .\obj\system_nuc970.d)
+I (..\..\Driver\Include\nuc970.h)(0x59A42D8A)
+I (D:\Tools\Work Tools\Keil_v5\ARM\ARMCC\include\stdint.h)(0x588B8344)
+I (..\..\Driver\Include\sys.h)(0x557A572A)
+F (..\..\Driver\Source\startup_NUC970.s)(0x557A5685)(--cpu ARM926EJ-S --pd "__EVAL SETA 1" -g --apcs=interwork -I"D:\Tools\Work Tools\Keil_v5\ARM\RV31\INC"-I"D:\Tools\Work Tools\Keil_v5\ARM\CMSIS\Include"-I"D:\Tools\Work Tools\Keil_v5\ARM\INC\Toshiba"--pd "__UVISION_VERSION SETA 524"--list .\lst\startup_nuc970.lst --xref -o .\obj\startup_nuc970.o --depend .\obj\startup_nuc970.d)
+F (..\..\Driver\Source\sys_nuc970.s)(0x557A5685)(--cpu ARM926EJ-S --pd "__EVAL SETA 1" -g --apcs=interwork -I"D:\Tools\Work Tools\Keil_v5\ARM\RV31\INC"-I"D:\Tools\Work Tools\Keil_v5\ARM\CMSIS\Include"-I"D:\Tools\Work Tools\Keil_v5\ARM\INC\Toshiba"--pd "__UVISION_VERSION SETA 524"--list .\lst\sys_nuc970.lst --xref -o .\obj\sys_nuc970.o --depend .\obj\sys_nuc970.d)
+F (..\..\Driver\Source\sys_uart.c)(0x557A572A)(-c --cpu ARM926EJ-S -D__EVAL -g -O2 --apcs=interwork --split_sections -I ..\..\Driver\Include-I"D:\Tools\Work Tools\Keil_v5\ARM\RV31\INC"-I"D:\Tools\Work Tools\Keil_v5\ARM\CMSIS\Include"-I"D:\Tools\Work Tools\Keil_v5\ARM\INC\Toshiba"-D__UVISION_VERSION="524"-o .\obj\sys_uart.o --list_dir ".\\lst\\" --list --omf_browse .\obj\sys_uart.crf --depend .\obj\sys_uart.d)
+I (D:\Tools\Work Tools\Keil_v5\ARM\ARMCC\include\string.h)(0x588B8344)
+I (..\..\Driver\Include\nuc970.h)(0x59A42D8A)
+I (D:\Tools\Work Tools\Keil_v5\ARM\ARMCC\include\stdint.h)(0x588B8344)
+I (..\..\Driver\Include\sys.h)(0x557A572A)
+F (..\..\Driver\Source\sys_timer.c)(0x59AD383E)(-c --cpu ARM926EJ-S -D__EVAL -g -O2 --apcs=interwork --split_sections -I ..\..\Driver\Include-I"D:\Tools\Work Tools\Keil_v5\ARM\RV31\INC"-I"D:\Tools\Work Tools\Keil_v5\ARM\CMSIS\Include"-I"D:\Tools\Work Tools\Keil_v5\ARM\INC\Toshiba"-D__UVISION_VERSION="524"-o .\obj\sys_timer.o --list_dir ".\\lst\\" --list --omf_browse .\obj\sys_timer.crf --depend .\obj\sys_timer.d)
+I (D:\Tools\Work Tools\Keil_v5\ARM\ARMCC\include\stdio.h)(0x588B8344)
+I (..\..\Driver\Include\nuc970.h)(0x59A42D8A)
+I (D:\Tools\Work Tools\Keil_v5\ARM\ARMCC\include\stdint.h)(0x588B8344)
+I (..\..\Driver\Include\sys.h)(0x557A572A)

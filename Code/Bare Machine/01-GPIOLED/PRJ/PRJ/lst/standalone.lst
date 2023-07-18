@@ -1,0 +1,56 @@
+L 1 "..\..\Driver\Source\standalone.c"
+N/*
+N * standalone.c - minimal bootstrap for C library
+N * Copyright (C) 2000 ARM Limited.
+N * All rights reserved.
+N */
+N
+N/*
+N * RCS $Revision: 2 $
+N * Checkin $Date: 15/05/18 2:47p $ 0
+N * Revising $Author: Hpchen0 $
+N */
+N
+N/*
+N * This code defines a run-time environment for the C library.
+N * Without this, the C startup code will attempt to use semi-hosting
+N * calls to get environment information.
+N */
+N
+Nextern unsigned int Image$$RW_RAM1$$ZI$$Limit;
+N
+N
+Nvoid _sys_exit(int return_code)
+N{
+Nlabel:
+N    goto label; /* endless loop */
+N}
+N
+Nvoid _ttywrch(int ch)
+N{
+N    char tempch = (char)ch;
+N    (void)tempch;
+N}
+N
+N
+N/// @cond HIDDEN_SYMBOLS
+N
+N__value_in_regs struct R0_R3 {
+N    unsigned heap_base, stack_base, heap_limit, stack_limit;
+N}
+N__user_setup_stackheap(unsigned int R0, unsigned int SP, unsigned int R2, unsigned int SL)
+N
+N{
+N    struct R0_R3 config;
+N
+N
+N    config.heap_base = (unsigned int)&Image$$RW_RAM1$$ZI$$Limit;
+N    config.stack_base = SP;
+N
+N
+N    return config;
+N}
+N/// @endcond HIDDEN_SYMBOLS
+N
+N
+N/* end of file standalone.c */
