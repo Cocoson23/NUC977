@@ -1,5 +1,5 @@
 # U-Boot顶层Makefile #  
-**文中图文借鉴于学长学习经验及官方文档**
+**文中图文借鉴于学长学习经验及官方文档**  
 整体`make`过程  
 ![make 过程](https://img1.imgtp.com/2023/07/18/c7vzgZDi.jpg)
 ## U-Boot 目录说明 ##
