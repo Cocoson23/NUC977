@@ -2,7 +2,7 @@
 
 ## Directory ##  
 - [酷客NUC977开发板使用入门](https://github.com/Cocoson23/NUC977/blob/master/Notes/01-Start.md)  
-- [Linux开发环境搭建](https://github.com/Cocoson23/NUC977/blob/master/Notes/01-BuildLinuxEnv.md)
+- [Linux开发环境搭建](https://github.com/Cocoson23/NUC977/blob/master/Notes/02-BuildLinuxEnv.md)
 - [U-Boot简介](https://github.com/Cocoson23/NUC977/blob/master/Notes/03-U-Boot.md)
 - [U-Boot Makefile](https://github.com/Cocoson23/NUC977/blob/master/Notes/04-U-Boot-Makefile.md)
 ## Tricks ##
