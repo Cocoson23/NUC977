@@ -18,8 +18,12 @@ U-boot 的全称是 Universal Boot Loader，U-boot是一个遵循 GPL 协议的�
    非完整功能的`u-boot`，仅在`NAND Boot`时使用
   3. mkimage
 
+## NUC977进入uboot ##
+使用putty连接开发板后，按键`RST`同时立即敲击任何按键即可取消`autoloader`进入`uboot`  
+![Entry uboot](https://img1.imgtp.com/2023/07/18/U4E1MUdm.jpg)
+
 ## U-Boot命令 ##
-U-Boot类似于裸机代码，在未引导OS的情况下可以通过U-Boot命令与一些特定外设进行交互或实现部分功能
+U-Boot类似于裸机代码，在未引导OS的情况下可以通过U-Boot命令设置一些环境变量
 ### 编译 ###
 - 清除之前编译的数据  
   `make distclean`  
