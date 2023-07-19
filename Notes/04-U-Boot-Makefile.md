@@ -10,11 +10,13 @@
 - `Arch`
   其中包含了与架构相关的代码，所使用的NUC977为`ARM`架构所以涉及到的是`arch/arm`下的文件
 - `CPU`  
-  该目录下同样与CPU架构相关，含有`arch/arm/cpu/arm926ejs`  
+  该目录下同样与CPU架构相关，含有`arch/arm/cpu/arm926ejs/nuc900`  
 - `Board`  
   该目录则与开发板厂商相关，`board/nuvoton/nuc970`即适配当前使用的`NUC977`开发板，故`uboot`移植的时候即可参考`board/nuvoton/nuc970`开发板  
 - `Configs`  
-  `uboot`配置文件，编译前必须使用`defconfig`配置`uboot`  
+  `uboot`配置文件，编译前必须使用`defconfig`配置`uboot`    
+- `Include` 存放头文件以及配置文件. NUC970 的配置文件就放在 include/configs/nuc970_evb.h
+- `lib` 放置各种函式库
 ## U-Boot 顶层 Makefile 分析 ##  
 ### 版本 ###
 

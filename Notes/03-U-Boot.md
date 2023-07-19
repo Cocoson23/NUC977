@@ -1,7 +1,16 @@
 # U-Boot #
 Linux 系统要启动就必须需要一个` bootloader `程序（类似Windows中通过`BIOS`启动），这段 bootloader 程序会先初始化DDR 等外设，然后将 Linux 内核从 flash(NAND，NOR FLASH，SD，MMC 等)拷贝到 DDR 中，最后启动 Linux 内核。  
 
-U-boot 的全称是 Universal Boot Loader，U-boot是一个遵循 GPL 协议的开源软件，U-boot是一个裸机代码，可以看作是一个裸机综合例程。  
+U-boot 的全称是 Universal Boot Loader，U-boot是一个遵循 GPL 协议的开源软件，U-boot是一个裸机代码，可以看作是一个裸机综合例程。可以支持多种不同的计算器系统结构, 
+包括ARM、MIPS、x86 等架构. 支持下列功能：  
+
+- 网络下载: TFTP, BOOTP, DHCP
+- 串口下载: s-record, binary (via Kermit)
+- Flash 管理: 抹除, 读, 写
+- Flash 型别: SPI flash, NAND flash
+- 内存工具: 读, 写, 复制, 比对
+- 交互式 shell: 命令, 脚本  
+
 | 种类 | 描述 |
 | ---- | ---- |
 | uboot官方提供的uboot代码 | 由uboot官方进行维护开发，版本更新快，基本包含常用芯片 |
@@ -23,7 +32,12 @@ U-boot 的全称是 Universal Boot Loader，U-boot是一个遵循 GPL 协议的�
 ![Entry uboot](https://img1.imgtp.com/2023/07/18/U4E1MUdm.jpg)
 
 ## U-Boot命令 ##
-U-Boot类似于裸机代码，在未引导OS的情况下可以通过U-Boot命令设置一些环境变量
+U-Boot类似于裸机代码，在未引导OS的情况下可以通过U-Boot命令设置一些环境变量  
+- `bootm`  
+  将 Linux 内核下载到 DDR 之后，再通过 bootm 命令完成 Linux 内核的开机。
+因此，bootm 命令是用来启动由 mkimage 工具产生的 Linux 内核或其他应用程序。  
+- `go`  
+  启动 “非”经由 mkimage 工具产生的Linux 内核或其他应用程序
 ### 编译 ###
 - 清除之前编译的数据  
   `make distclean`  
