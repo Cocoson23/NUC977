@@ -4,6 +4,7 @@
 - [Linux开发环境搭建](https://github.com/Cocoson23/NUC977/blob/master/Notes/02-BuildLinuxEnv.md)
 - [U-Boot简介](https://github.com/Cocoson23/NUC977/blob/master/Notes/03-U-Boot.md)
 - [U-Boot Makefile](https://github.com/Cocoson23/NUC977/blob/master/Notes/04-U-Boot-Makefile.md)
+- [Compile and Burn](https://github.com/Cocoson23/NUC977/blob/master/Notes/05-Compile%26Burn.md)
 ## Labs ##
 ### Bare Machine ###  
 - [GPIO Control LEDs](https://github.com/Cocoson23/NUC977/tree/master/Code/Bare%20Machine/01-GPIOLED)
