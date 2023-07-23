@@ -8,11 +8,11 @@ LED linux Driver file
 具体实现中，于`led_module_init()`函数实现GPIO初始化及字符设备驱动设计流程：  
 1. 申请主次设备号
 2. 构造cdev结构体
-3. 使用ops结构体初始化dev结构体，并将`led_on` `led_off`函数装进`led_ioctl`函数中，赋值给ops结构体的`unlocked_ioctl`成员，ops结构体的`open` `release`成员则由`led_init` `led_release`赋值，以实现打开字符设备文件时完成GPIO初始化，传入对应指令时完成灯的亮灭操作，关闭字符设备文件时熄灭灯并取消内存映射关系。
-4. 注册字符设备驱动
-而`led_module_exit`函数中则完成了如下流程：
-1. 将字符设备驱动从框架中注销
-2. 注销设备号  
+3. 使用ops结构体初始化dev结构体，并将`led_on` `led_off`函数装进`led_ioctl`函数中，赋值给ops结构体的`unlocked_ioctl`成员，ops结构体的`open` `release`成员则由`led_init` `led_release`赋值，以实现打开字符设备文件时完成GPIO初始化，传入对应指令时完成灯的亮灭操作，关闭字符设备文件时熄灭灯并取消内存映射关系。  
+
+4. 注册字符设备驱动而`led_module_exit`函数中则完成了如下流程：  
+   - 将字符设备驱动从框架中注销  
+   -  注销设备号  
 
 ## Makefile ##  
 实现对整体项目文件编译的管理  
