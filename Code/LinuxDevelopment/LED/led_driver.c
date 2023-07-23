@@ -6,6 +6,10 @@
 #include <asm/io.h>
 #include <linux/cdev.h>
 #include <linux/fs.h>
+#include <linux/pci.h>
+#include <linux/mm.h>
+#include <linux/export.h>
+#include <asm/uaccess.h>
 
 MODULE_LICENSE("Dual BSD/GPL");
 MODULE_AUTHOR("cocoson");
@@ -28,13 +32,15 @@ int led_on(int i)
 {
 	switch (i)
 	{
+	// ARM中对普通内存与特殊功能寄存器进行了统一编址，普通内存内容会被cache读入，直接对地址进行读写操作可能是对
+	// cache中的内容进行，而没有回写入设备，所以应当使用iowrite32 ioread32来告诉内核这是设备地址要直接读写内存而不经过cache
 	case 0:
-		*led.GPIOPB_DATAOUT &= 0xfffffff2;
-		printk("LED0 ON\n");
+		iowrite32(ioread32(led.GPIOPB_DATAOUT) & 0xfffffff2, led.GPIOPB_DATAOUT);
+		//*led.GPIOPB_DATAOUT &= 0xfffffff2;
 		break;
 	case 1:
-		*led.GPIOPB_DATAOUT &= 0xfffffff1;
-		printk("LED1 ON\n");
+		iowrite32(ioread32(led.GPIOPB_DATAOUT) & 0xfffffff1, led.GPIOPB_DATAOUT);
+		//*led.GPIOPB_DATAOUT &= 0xfffffff1;
 		break;
 	default:
 		break;
@@ -49,12 +55,12 @@ int led_off(int i)
 	switch (i)
 	{
 	case 0:
-		*led.GPIOPB_DATAOUT |= 0x00000001;
-		printk("LED0 OFF\n");
+		iowrite32(ioread32(led.GPIOPB_DATAOUT) | 0x00000001, led.GPIOPB_DATAOUT);
+		//*led.GPIOPB_DATAOUT |= 0x00000001;
 		break;
 	case 1:
-		*led.GPIOPB_DATAOUT |= 0x00000002;
-		printk("LED1 OFF\n");
+		iowrite32(ioread32(led.GPIOPB_DATAOUT) | 0x00000002, led.GPIOPB_DATAOUT);
+		//*led.GPIOPB_DATAOUT |= 0x00000002;
 		break;
 	default:
 		break;
@@ -65,13 +71,17 @@ int led_off(int i)
 
 int led_init(struct inode *i, struct file *f) 
 {
-	//CLK_PCLKEN0 = ioremap(0xB0000218, 4);
 	led.GPIOPB_DIR = ioremap(0xB8003040, 4);
 	led.GPIOPB_DATAOUT = ioremap(0xB8003044, 4);
-	//*CLK_PCLKEN0 = 0x00000008;
-	*led.GPIOPB_DIR |= 0x00000003;
+	led.CLK_PCLKEN0 = ioremap(0xB0000218, 4);
+
+	// 初始化时钟
+	iowrite32(ioread32(led.CLK_PCLKEN0) | 0x00000008, led.CLK_PCLKEN0);
+	// 初始化GPIO方向
+	iowrite32(ioread32(led.GPIOPB_DIR) | 0x00000003, led.GPIOPB_DIR);
 	// 灯初始化熄灭
-	*led.GPIOPB_DATAOUT |= 0x00000003;
+	iowrite32(ioread32(led.GPIOPB_DATAOUT) | 0x00000003, led.GPIOPB_DATAOUT);
+	//*led.GPIOPB_DATAOUT |= 0x00000003;
 	printk("Register init finished\n");
 
 	return 0;
@@ -79,12 +89,13 @@ int led_init(struct inode *i, struct file *f)
 
 int led_release(struct inode *i, struct file *f)
 {
-	*led.GPIOPB_DATAOUT |= 0x00000003;
+	led_off(0);
+	led_off(1);
 
 	// 解除内存映射
-    //iounmap(led.CLK_PCLKEN0);
     iounmap(led.GPIOPB_DIR);
     iounmap(led.GPIOPB_DATAOUT);
+	iounmap(led.CLK_PCLKEN0);
 
 	return 0;
 }
@@ -94,11 +105,9 @@ long led_ioctl(struct file *f, unsigned int cmd, unsigned long arg)
 	switch (cmd)
 	{
 	case LEDON:
-		printk("cmd: %d\n", LEDON);
 		led_on(arg);
 		break;
 	case LEDOFF:
-		printk("cmd: %d\n", LEDOFF);
 		led_off(arg);
 		break;
 	default:
@@ -108,6 +117,18 @@ long led_ioctl(struct file *f, unsigned int cmd, unsigned long arg)
 	return 0;
 }
 
+ssize_t led_read(struct file *f, char __user *buf, size_t size, loff_t *offset)
+{
+	int led_val[2];
+	led_val[0] = ioread32(led.GPIOPB_DATAOUT) & (1 << 0);
+	led_val[1] = ioread32(led.GPIOPB_DATAOUT) & (1 << 1);
+	// put_user 一次性传递一个数据块 char int short
+	// 所以此处使用 copy_to_user
+	if(copy_to_user((void*)buf, led_val, sizeof(led_val))) {}
+
+	return sizeof(led_val);
+}
+
 static struct file_operations ledops = {
   // 专门挂接设备初始化动作
   .open = led_init,
@@ -115,6 +136,10 @@ static struct file_operations ledops = {
   .release = led_release,
   // 挂接设备控制函数
   .unlocked_ioctl = led_ioctl,
+  // 增加模块计数
+  .owner = THIS_MODULE,
+  // 读取LED0 LED1值
+  .read = led_read,
 }; 
 
 
@@ -125,7 +150,7 @@ static int __init led_module_init(void)
 	// 申请主次设备号
 	alloc_chrdev_region(&led.devnum, 0, 1, "LED");	
 	printk("devnum: %d\n", MAJOR(led.devnum));
-
+	
 	// 构造cdev结构体 (char device struct)
 	led.cdev = cdev_alloc();
 
@@ -144,7 +169,6 @@ static int __init led_module_init(void)
 // 卸载模块时调用该函数
 static void __exit led_module_exit(void)
 {
-
 	printk("led driver delete start\n");
 	// 从字符设备驱动框架中注销驱动
 	cdev_del(led.cdev);

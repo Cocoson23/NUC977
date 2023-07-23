@@ -11,6 +11,7 @@
 
 int main(int argc, char* argv[])
 {
+	int led_val[2];
 	if(argc < 2) {
 		printf("error command, usage: ./led ledx\n");
 		return -1;
@@ -21,16 +22,27 @@ int main(int argc, char* argv[])
         perror("Open LED");
         return -1;
     }
-
+	
     while(1) {
 		ioctl(fd, LEDON, 0);
-		sleep(1);
+		sleep(2);
+		read(fd, led_val, sizeof(led_val));
+		printf("led0 val: %ld  led1 val: %ld\n", led_val[0], led_val[1]);
+
 		ioctl(fd, LEDOFF, 0);
-		sleep(1);
+		sleep(2);
+		read(fd, led_val, sizeof(led_val));
+		printf("led0 val: %ld  led1 val: %ld\n", led_val[0], led_val[1]);
+
 		ioctl(fd, LEDON, 1);
-		sleep(1);
+		sleep(2);
+		read(fd, led_val, sizeof(led_val));
+		printf("led0 val: %ld  led1 val: %ld\n", led_val[0], led_val[1]);
+		
 		ioctl(fd, LEDOFF, 1);
-		sleep(1);
+		sleep(2);
+		read(fd, led_val, sizeof(led_val));
+		printf("led0 val: %ld  led1 val: %ld\n", led_val[0], led_val[1]);
     }
 
     // 关闭字符设备 => 调用led_off()函数
