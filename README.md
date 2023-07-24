@@ -10,7 +10,7 @@
   - [U-Boot Makefile](https://github.com/Cocoson23/NUC977/blob/master/Notes/04-U-Boot-Makefile.md)  
   - [Compile and Burn](https://github.com/Cocoson23/NUC977/blob/master/Notes/05-Compile%26Burn.md)
 - 驱动  
-  - [Linux cdev driver](https://github.com/Cocoson23/NUC977/blob/master/Notes/06-Linux%E5%AD%97%E7%AC%A6%E8%AE%BE%E5%A4%87%E9%A9%B1%E5%8A%A8.md)  
+  - [Linux cdev driver](https://github.com/Cocoson23/NUC977/blob/master/Notes/06-Linux%20cdev%20driver.md)  
 ## Labs ##
 ### Bare Machine ###  
 - [GPIO Control LEDs](https://github.com/Cocoson23/NUC977/tree/master/Code/Bare%20Machine/01-GPIOLED)
