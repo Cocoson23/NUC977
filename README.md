@@ -4,10 +4,13 @@
   `Windows11` `WSL2` `Ubuntu22.04` `VSCode` 
   - [wsl安装](https://github.com/Cocoson23/NUC977/blob/master/Notes/00-WSL-Ubuntu%E6%90%AD%E5%BB%BA.md)
   - [Linux开发环境搭建](https://github.com/Cocoson23/NUC977/blob/master/Notes/02-BuildLinuxEnv.md)
-- [酷客NUC977开发板使用入门](https://github.com/Cocoson23/NUC977/blob/master/Notes/01-Start.md)  
-- [U-Boot简介](https://github.com/Cocoson23/NUC977/blob/master/Notes/03-U-Boot.md)  
-- [U-Boot Makefile](https://github.com/Cocoson23/NUC977/blob/master/Notes/04-U-Boot-Makefile.md)  
-- [Compile and Burn](https://github.com/Cocoson23/NUC977/blob/master/Notes/05-Compile%26Burn.md)  
+- 入门  
+  - [酷客NUC977开发板使用入门](https://github.com/Cocoson23/NUC977/blob/master/Notes/01-Start.md)  
+  - [U-Boot简介](https://github.com/Cocoson23/NUC977/blob/master/Notes/03-U-Boot.md)  
+  - [U-Boot Makefile](https://github.com/Cocoson23/NUC977/blob/master/Notes/04-U-Boot-Makefile.md)  
+  - [Compile and Burn](https://github.com/Cocoson23/NUC977/blob/master/Notes/05-Compile%26Burn.md)
+- 驱动  
+  - [Linux cdev driver](https://github.com/Cocoson23/NUC977/blob/master/Notes/06-Linux%E5%AD%97%E7%AC%A6%E8%AE%BE%E5%A4%87%E9%A9%B1%E5%8A%A8.md)  
 ## Labs ##
 ### Bare Machine ###  
 - [GPIO Control LEDs](https://github.com/Cocoson23/NUC977/tree/master/Code/Bare%20Machine/01-GPIOLED)
