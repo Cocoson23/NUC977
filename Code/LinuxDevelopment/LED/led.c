@@ -25,24 +25,24 @@ int main(int argc, char* argv[])
 	
     while(1) {
 		ioctl(fd, LEDON, 0);
-		sleep(2);
 		read(fd, led_val, sizeof(led_val));
 		printf("led0 val: %ld  led1 val: %ld\n", led_val[0], led_val[1]);
+		sleep(2);
 
 		ioctl(fd, LEDOFF, 0);
-		sleep(2);
 		read(fd, led_val, sizeof(led_val));
 		printf("led0 val: %ld  led1 val: %ld\n", led_val[0], led_val[1]);
+		sleep(2);
 
 		ioctl(fd, LEDON, 1);
-		sleep(2);
 		read(fd, led_val, sizeof(led_val));
 		printf("led0 val: %ld  led1 val: %ld\n", led_val[0], led_val[1]);
+		sleep(2);
 		
 		ioctl(fd, LEDOFF, 1);
-		sleep(2);
 		read(fd, led_val, sizeof(led_val));
 		printf("led0 val: %ld  led1 val: %ld\n", led_val[0], led_val[1]);
+		sleep(2);
     }
 
     // 关闭字符设备 => 调用led_off()函数

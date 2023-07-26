@@ -25,6 +25,10 @@ struct {
 	unsigned int *CLK_PCLKEN0;
 	unsigned int *GPIOPB_DIR;
 	unsigned int *GPIOPB_DATAOUT;
+
+	atomic_t ledavailable;
+	spinlock_t spinlock;
+	struct mutex mutexlock;
 } led;
 
 // LED0 LED1 ON
@@ -71,6 +75,11 @@ int led_off(int i)
 
 int led_init(struct inode *i, struct file *f) 
 {
+	// 获取自旋锁
+	//spin_lock(&led.spinlock);
+	// 获取互斥锁
+	// mutex_lock(&led.mutexlock);
+
 	led.GPIOPB_DIR = ioremap(0xB8003040, 4);
 	led.GPIOPB_DATAOUT = ioremap(0xB8003044, 4);
 	led.CLK_PCLKEN0 = ioremap(0xB0000218, 4);
@@ -82,6 +91,12 @@ int led_init(struct inode *i, struct file *f)
 	// 灯初始化熄灭
 	iowrite32(ioread32(led.GPIOPB_DATAOUT) | 0x00000003, led.GPIOPB_DATAOUT);
 	//*led.GPIOPB_DATAOUT |= 0x00000003;
+	
+	// 释放自旋锁
+	// spin_unlock(&led.spinlock);
+	// 释放互斥锁
+	// mutex_unlock(&led.mutexlock);
+
 	printk("Register init finished\n");
 
 	return 0;
@@ -120,8 +135,10 @@ long led_ioctl(struct file *f, unsigned int cmd, unsigned long arg)
 ssize_t led_read(struct file *f, char __user *buf, size_t size, loff_t *offset)
 {
 	int led_val[2];
-	led_val[0] = ioread32(led.GPIOPB_DATAOUT) & (1 << 0);
-	led_val[1] = ioread32(led.GPIOPB_DATAOUT) & (1 << 1);
+	
+	led_val[0] = (ioread32(led.GPIOPB_DATAOUT) & (1 << 0)) >> 0;
+	led_val[1] = (ioread32(led.GPIOPB_DATAOUT) & (1 << 1)) >> 1;
+
 	// put_user 一次性传递一个数据块 char int short
 	// 所以此处使用 copy_to_user
 	if(copy_to_user((void*)buf, led_val, sizeof(led_val))) {}
@@ -146,7 +163,12 @@ static struct file_operations ledops = {
 
 // 插入模块时调用该函数
 static int __init led_module_init(void)
-{
+{ 
+	// 初始化LED spinlock
+	spin_lock_init(&led.spinlock);
+	// 初始化LED mutex
+	mutex_init(&led.mutexlock);
+
 	// 申请主次设备号
 	alloc_chrdev_region(&led.devnum, 0, 1, "LED");	
 	printk("devnum: %d\n", MAJOR(led.devnum));
