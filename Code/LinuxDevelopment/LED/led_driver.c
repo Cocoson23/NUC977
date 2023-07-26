@@ -165,9 +165,9 @@ static struct file_operations ledops = {
 static int __init led_module_init(void)
 { 
 	// 初始化LED spinlock
-	spin_lock_init(&led.spinlock);
+	// spin_lock_init(&led.spinlock);
 	// 初始化LED mutex
-	mutex_init(&led.mutexlock);
+	// mutex_init(&led.mutexlock);
 
 	// 申请主次设备号
 	alloc_chrdev_region(&led.devnum, 0, 1, "LED");	
