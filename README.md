@@ -10,13 +10,14 @@
   - [U-Boot Makefile](https://github.com/Cocoson23/NUC977/blob/master/Notes/04-U-Boot-Makefile.md)  
   - [Compile and Burn](https://github.com/Cocoson23/NUC977/blob/master/Notes/05-Compile%26Burn.md)
 - 驱动  
-  - [Linux cdev driver](https://github.com/Cocoson23/NUC977/blob/master/Notes/06-Linux%20cdev%20driver.md)  
+  - [Linux cdev Driver](https://github.com/Cocoson23/NUC977/blob/master/Notes/06-Linux%20cdev%20driver.md)
+  - [Linux Platform Device Driver](https://github.com/Cocoson23/NUC977/blob/master/Code/LinuxDevelopment/Linux%20Platform%20Bus%20LED/README.md)  
 ## Labs ##
 ### Bare Machine ###  
-- [GPIO Control LEDs](https://github.com/Cocoson23/NUC977/tree/master/Code/Bare%20Machine/01-GPIOLED)
+- [GPIO Control LEDs](https://github.com/Cocoson23/NUC977/tree/master/Code/Bare%20Machine/01-GPIOLED)  
 ### Linux Development ###  
-- [GPIO Control LEDs based on Linux](https://github.com/Cocoson23/NUC977/tree/master/Code/LinuxDevelopment/LED)
-- [GPIO Control LEDs based on Platform Bus](https://github.com/Cocoson23/NUC977/tree/master/Code/LinuxDevelopment/Linux%20Platform%20Bus%20LED)
+- [GPIO Control LEDs based on Linux](https://github.com/Cocoson23/NUC977/tree/master/Code/LinuxDevelopment/LED)  
+- [GPIO Control LEDs based on Platform Bus](https://github.com/Cocoson23/NUC977/tree/master/Code/LinuxDevelopment/Linux%20Platform%20Bus%20LED)  
 ## Tricks ##
 - 给`Git`添加代理  
   `git config --global https.proxy 'http://127.0.0.1:xxxx'` => xxxx为`port number`  
