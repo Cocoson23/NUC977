@@ -15,7 +15,8 @@
 ### Bare Machine ###  
 - [GPIO Control LEDs](https://github.com/Cocoson23/NUC977/tree/master/Code/Bare%20Machine/01-GPIOLED)
 ### Linux Development ###  
-- [GPIO Control LEDs based on Linux](https://github.com/Cocoson23/NUC977/tree/master/Code/LinuxDevelopment/LED)  
+- [GPIO Control LEDs based on Linux](https://github.com/Cocoson23/NUC977/tree/master/Code/LinuxDevelopment/LED)
+- [GPIO Control LEDs based on Platform Bus](https://github.com/Cocoson23/NUC977/tree/master/Code/LinuxDevelopment/Linux%20Platform%20Bus%20LED)
 ## Tricks ##
 - 给`Git`添加代理  
   `git config --global https.proxy 'http://127.0.0.1:xxxx'` => xxxx为`port number`  
